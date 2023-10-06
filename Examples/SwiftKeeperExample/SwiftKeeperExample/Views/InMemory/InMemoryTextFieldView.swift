@@ -14,9 +14,6 @@ struct InMemoryTextFieldView: View {
     @Storage(.inMemory, key: "in-memory", defaultValue: "")
     var secondInMemory: String
     
-//    @Storage(.inMemory, key: "in-memory")
-//    var thirdInMemory: String?
-    
     var body: some View {
         List {
             Section("In-memory storage") {
