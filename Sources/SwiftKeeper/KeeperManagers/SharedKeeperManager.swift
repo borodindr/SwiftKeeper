@@ -1,7 +1,7 @@
 import Foundation
 
-struct SharedKeeperManager: UserDefaultsKeeperManager {
-    let userDefaults: UserDefaults = {
+class SharedKeeperManager<Value: Codable>: UserDefaultsKeeperManager<Value> {
+    init(key: StorageKey) {
         let name = SwiftKeeperConfiguration.appGroupIdentifier
         guard !name.isEmpty else {
             fatalError("App Group identifier was not set. Please set the identifier in 'SwiftKeeperConfiguration.appGroupIdentifier'.")
@@ -9,6 +9,6 @@ struct SharedKeeperManager: UserDefaultsKeeperManager {
         guard let userDefaults = UserDefaults(suiteName: name) else {
             fatalError("Failed to create UserDefaults for App Group '\(name)'")
         }
-        return userDefaults
-    }()
+        super.init(key: key, userDefaults: userDefaults)
+    }
 }

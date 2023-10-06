@@ -1,5 +1,7 @@
 import Foundation
 
-struct PersistentKeeperManager: UserDefaultsKeeperManager {
-    let userDefaults = UserDefaults.standard
+class PersistentKeeperManager<Value: Codable>: UserDefaultsKeeperManager<Value> {
+    init(key: StorageKey) {
+        super.init(key: key, userDefaults: .standard)
+    }
 }

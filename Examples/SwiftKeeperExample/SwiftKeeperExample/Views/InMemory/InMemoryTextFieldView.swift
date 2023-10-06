@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftKeeper
 
 struct InMemoryTextFieldView: View {
-    @Storage(.persistent, key: "in-memory", defaultValue: "")
+    @Storage(.inMemory, key: "in-memory", defaultValue: "")
     var firstInMemory: String
     @Storage(.inMemory, key: "in-memory", defaultValue: "")
     var secondInMemory: String
@@ -25,10 +25,12 @@ struct InMemoryTextFieldView: View {
                     Text("In-memory storage")
                     TextField("Type", text: $secondInMemory)
                 }
+                Text("Third value: \(secondInMemory)")
             }
         }
         .navigationTitle("In-Memory")
-        .navigationBarTitleDisplayMode(.inline)
+        // TODO: Not available in macOS
+        // .navigationBarTitleDisplayMode(.inline)
     }
 }
 

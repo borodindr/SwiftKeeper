@@ -6,9 +6,9 @@ import PackageDescription
 let package = Package(
     name: "SwiftKeeper",
     platforms: [
-        .iOS(.v13),
-        .macCatalyst(.v13),
-        .tvOS(.v13),
+        .iOS(.v14),
+        .macCatalyst(.v14),
+        .tvOS(.v14),
         .watchOS(.v6),
         .macOS(.v10_15)
     ],
