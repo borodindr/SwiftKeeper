@@ -13,7 +13,7 @@ struct ContentView: View {
         NavigationStack {
             List {
                 NavigationLink("In-Memory") {
-                    InMemoryTextFieldView()
+                    InMemoryOptionsView()
                 }
             }
             .navigationTitle("SwiftKeeperExample")

@@ -3,19 +3,13 @@ import SwiftUI
 
 @propertyWrapper
 public struct Storage<Value: Codable> {
-    private let keeperManager: KeeperManager
-    @State
-    private var value: Value
-    private let key: StorageKey
+    @ObservedObject
+    private var keeperManager: KeeperManager<Value>
+    private let defaultValue: Value
 
     public var wrappedValue: Value {
-        get {
-            value
-        }
-        nonmutating set {
-            keeperManager.set(key: key, to: newValue)
-            value = newValue
-        }
+        get { keeperManager.value ?? defaultValue }
+        nonmutating set { keeperManager.value = newValue }
     }
     
     public var projectedValue: Binding<Value> {
@@ -26,10 +20,8 @@ public struct Storage<Value: Codable> {
     }
 
     public init(_ storageType: StorageType, key: StorageKey, defaultValue: Value) {
-        let keeperManager = storageType.manager()
-        self.keeperManager = keeperManager
-        self.key = key
-        self._value = State(wrappedValue: keeperManager.get(key: key) ?? defaultValue)
+        self.keeperManager = storageType.manager(key: key)
+        self.defaultValue = defaultValue
     }
 }
 
@@ -37,36 +29,26 @@ extension Storage: DynamicProperty { }
 
 extension Storage {
     public init<T: Codable>(_ storageType: StorageType, key: StorageKey) where Value == Optional<T> {
-        let keeperManager = storageType.manager()
-        self.keeperManager = keeperManager
-        self.key = key
-        self._value = State(wrappedValue: keeperManager.get(key: key))
+        self.keeperManager = storageType.manager(key: key)
+        self.defaultValue = nil
     }
     
     public init<T: Keepable>(_ storageType: StorageType) where Value == Optional<T> {
-        let keeperManager = storageType.manager()
-        self.keeperManager = keeperManager
-        self.key = T.storageKey
-        self._value = State(wrappedValue: keeperManager.get(key: key))
+        self.keeperManager = storageType.manager(key: T.storageKey)
+        self.defaultValue = nil
     }
 }
 
 extension Storage where Value: Keepable {
     public init(_ storageType: StorageType, defaultValue: Value) {
-        let keeperManager = storageType.manager()
-        self.keeperManager = keeperManager
-        self.key = Value.storageKey
-        self._value = State(wrappedValue: keeperManager.get(key: key) ?? defaultValue)
+        self.keeperManager = storageType.manager(key: Value.storageKey)
+        self.defaultValue = defaultValue
     }
-    
 }
 
 extension Storage where Value: DefaultedKeepable {
     public init(_ storageType: StorageType) {
-        let keeperManager = storageType.manager()
-        self.keeperManager = keeperManager
-        self.key = Value.storageKey
-        self._value = State(wrappedValue: keeperManager.get(key: key) ?? Value.defaultStorageValue)
+        self.keeperManager = storageType.manager(key: Value.storageKey)
+        self.defaultValue = Value.defaultStorageValue
     }
-    
 }

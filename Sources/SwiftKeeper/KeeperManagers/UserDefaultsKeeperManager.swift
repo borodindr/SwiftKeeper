@@ -1,29 +1,18 @@
 import Foundation
 
-protocol UserDefaultsKeeperManager: KeeperManager {
-    var userDefaults: UserDefaults { get }
-}
-
-extension UserDefaultsKeeperManager {
-    func get<Value: Codable>(key: StorageKey) -> Value? {
-        guard let data = userDefaults.data(forKey: key.keyValue) else {
-            return nil
-        }
-        do {
-            let value = try JSONDecoder().decode(Value.self, from: data)
-            return value
-        } catch {
-            assertionFailure("Storage load failed. Decoding error: \(error.localizedDescription)")
-            return nil
-        }
+class UserDefaultsKeeperManager<Value: Codable>: KeeperManager<Value> {
+    let userDefaults: UserDefaults
+    
+    init(key: StorageKey, userDefaults: UserDefaults) {
+        self.userDefaults = userDefaults
+        super.init(key: key)
     }
     
-    func set<Value: Codable>(key: StorageKey, to newValue: Value?) {
-        do {
-            let data = try JSONEncoder().encode(newValue)
-            userDefaults.set(data, forKey: key.keyValue)
-        } catch {
-            assertionFailure("Storage save failed. Encoding error: \(error.localizedDescription)")
-        }
+    override func fetch() -> Data? {
+        userDefaults.data(forKey: key.keyValue)
+    }
+    
+    override func save(_ newValue: Data?) {
+        userDefaults.set(newValue, forKey: key.keyValue)
     }
 }

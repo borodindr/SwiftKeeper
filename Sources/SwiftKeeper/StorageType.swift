@@ -1,16 +1,18 @@
 import Foundation
 
 public enum StorageType {
-    case inMemory, persistent, shared
+    case inMemory
+    case persistent
+    case shared
     
-    func manager() -> KeeperManager {
+    func manager<Value: Codable>(key: StorageKey) -> KeeperManager<Value> {
         switch self {
         case .inMemory:
-            return InMemoryKeeperManager()
+            return InMemoryKeeperManager(key: key)
         case .persistent:
-            return PersistentKeeperManager()
+            return PersistentKeeperManager(key: key)
         case .shared:
-            return SharedKeeperManager()
+            return SharedKeeperManager(key: key)
         }
     }
 }
