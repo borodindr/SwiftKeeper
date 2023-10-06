@@ -13,6 +13,8 @@ struct InMemoryTextFieldView: View {
     var firstInMemory: String
     @Storage(.inMemory, key: "in-memory", defaultValue: "")
     var secondInMemory: String
+    @Storage(.inMemory, key: "in-memory-two", defaultValue: "")
+    var thirdInMemory: String
     
     var body: some View {
         List {
@@ -25,7 +27,8 @@ struct InMemoryTextFieldView: View {
                     Text("In-memory storage")
                     TextField("Type", text: $secondInMemory)
                 }
-                Text("Third value: \(secondInMemory)")
+                Text("Second value: \(secondInMemory)")
+                Text("Third value: \(thirdInMemory)")
             }
         }
         .navigationTitle("In-Memory")

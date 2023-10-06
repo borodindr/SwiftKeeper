@@ -9,7 +9,10 @@ public struct Storage<Value: Codable> {
 
     public var wrappedValue: Value {
         get { keeperManager.value ?? defaultValue }
-        nonmutating set { keeperManager.value = newValue }
+        nonmutating set {
+            keeperManager.value = newValue
+            keeperManager.set(newValue)
+        }
     }
     
     public var projectedValue: Binding<Value> {

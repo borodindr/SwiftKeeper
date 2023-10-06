@@ -2,23 +2,32 @@ import Foundation
 
 class KeeperManager<Value: Codable>: ObservableObject {
     @Published
-    var value: Value? {
-        didSet {
-            set(value)
-        }
-    }
+    var value: Value?
     let key: StorageKey
     
     init(key: StorageKey) {
         self.key = key
         value = get()
+        subscribeOnChanges { [weak self] in
+            guard let self else { return }
+            self.value = self.get()
+        }
     }
     
     func fetch() -> Data? {
         fatalError("Method 'fetch()' was not implemented.")
     }
+    
     func save(_ newValue: Data?) {
         fatalError("Method 'save(_:)' was not implemented.")
+    }
+    
+    func publishChanges() {
+        fatalError("Method 'publishChanges()' was not implemented.")
+    }
+    
+    func subscribeOnChanges(changesHandler: @escaping () -> Void) {
+        fatalError("Method 'subscribeOnChanges()' was not implemented.")
     }
 }
 
@@ -46,6 +55,7 @@ extension KeeperManager {
                 data = try JSONEncoder().encode(newValue)
             }
             save(data)
+            publishChanges()
         } catch {
             assertionFailure("Storage save failed. Encoding error: \(error.localizedDescription)")
         }
