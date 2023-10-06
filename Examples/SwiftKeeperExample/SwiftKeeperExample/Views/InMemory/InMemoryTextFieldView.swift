@@ -29,7 +29,8 @@ struct InMemoryTextFieldView: View {
             }
         }
         .navigationTitle("In-Memory")
-        .navigationBarTitleDisplayMode(.inline)
+        // TODO: Not available in macOS
+        // .navigationBarTitleDisplayMode(.inline)
     }
 }
 
