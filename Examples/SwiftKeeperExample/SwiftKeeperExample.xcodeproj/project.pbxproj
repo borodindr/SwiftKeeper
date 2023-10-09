@@ -14,6 +14,9 @@
 		3219B6622ACE5F64007CDF3D /* SwiftKeeper in Frameworks */ = {isa = PBXBuildFile; productRef = 3219B6612ACE5F64007CDF3D /* SwiftKeeper */; };
 		3219B6672ACE682B007CDF3D /* InMemoryTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219B6662ACE682B007CDF3D /* InMemoryTextFieldView.swift */; };
 		3219B66A2ACE6A3A007CDF3D /* InMemoryOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219B6692ACE6A3A007CDF3D /* InMemoryOptionsView.swift */; };
+		3273A9CA2AD44F96005239DD /* UserDefaultsOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273A9C92AD44F96005239DD /* UserDefaultsOptionsView.swift */; };
+		3273A9CC2AD44FBE005239DD /* UserDefaultsStandardTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273A9CB2AD44FBE005239DD /* UserDefaultsStandardTextFieldView.swift */; };
+		3273A9CE2AD45DF9005239DD /* UserDefaultsAppGroupTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3273A9CD2AD45DF9005239DD /* UserDefaultsAppGroupTextFieldView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		3219B6632ACE64D4007CDF3D /* SwiftKeeper */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftKeeper; path = ../..; sourceTree = "<group>"; };
 		3219B6662ACE682B007CDF3D /* InMemoryTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTextFieldView.swift; sourceTree = "<group>"; };
 		3219B6692ACE6A3A007CDF3D /* InMemoryOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryOptionsView.swift; sourceTree = "<group>"; };
+		3273A9C92AD44F96005239DD /* UserDefaultsOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsOptionsView.swift; sourceTree = "<group>"; };
+		3273A9CB2AD44FBE005239DD /* UserDefaultsStandardTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStandardTextFieldView.swift; sourceTree = "<group>"; };
+		3273A9CD2AD45DF9005239DD /* UserDefaultsAppGroupTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAppGroupTextFieldView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 		3219B6642ACE67E2007CDF3D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3273A9C82AD44F7B005239DD /* UserDeafults */,
 				3219B6682ACE6A20007CDF3D /* InMemory */,
 			);
 			path = Views;
@@ -93,6 +100,16 @@
 				3219B6692ACE6A3A007CDF3D /* InMemoryOptionsView.swift */,
 			);
 			path = InMemory;
+			sourceTree = "<group>";
+		};
+		3273A9C82AD44F7B005239DD /* UserDeafults */ = {
+			isa = PBXGroup;
+			children = (
+				3273A9C92AD44F96005239DD /* UserDefaultsOptionsView.swift */,
+				3273A9CB2AD44FBE005239DD /* UserDefaultsStandardTextFieldView.swift */,
+				3273A9CD2AD45DF9005239DD /* UserDefaultsAppGroupTextFieldView.swift */,
+			);
+			path = UserDeafults;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,8 +188,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3273A9CA2AD44F96005239DD /* UserDefaultsOptionsView.swift in Sources */,
 				3219B6532ACE5EFE007CDF3D /* ContentView.swift in Sources */,
+				3273A9CE2AD45DF9005239DD /* UserDefaultsAppGroupTextFieldView.swift in Sources */,
 				3219B6512ACE5EFE007CDF3D /* SwiftKeeperExampleApp.swift in Sources */,
+				3273A9CC2AD44FBE005239DD /* UserDefaultsStandardTextFieldView.swift in Sources */,
 				3219B6672ACE682B007CDF3D /* InMemoryTextFieldView.swift in Sources */,
 				3219B66A2ACE6A3A007CDF3D /* InMemoryOptionsView.swift in Sources */,
 			);
