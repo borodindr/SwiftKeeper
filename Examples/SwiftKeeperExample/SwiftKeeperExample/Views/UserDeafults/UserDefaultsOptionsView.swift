@@ -10,8 +10,11 @@ import SwiftUI
 struct UserDefaultsOptionsView: View {
     var body: some View {
         List {
-            NavigationLink("Text Field") {
-                UserDefaultsTextFieldView()
+            NavigationLink("Standard") {
+                UserDefaultsStandardTextFieldView()
+            }
+            NavigationLink("AppGroup") {
+                UserDefaultsAppGroupTextFieldView()
             }
         }
     }

@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 
-class InMemoryKeeperManager<Value: Codable>: KeeperManager<Value> {
+final class InMemoryKeeperManager<Value: Codable>: KeeperManager<Value> {
     let container = InMemoryStorageContainer.shared
     private var changesSubscription: AnyCancellable?
     

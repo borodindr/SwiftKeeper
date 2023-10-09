@@ -1,12 +1,12 @@
 import Foundation
 import Combine
 
-class UserDefaultsKeeperManager<Value: Codable>: KeeperManager<Value> {
+final class UserDefaultsKeeperManager<Value: Codable>: KeeperManager<Value> {
     let userDefaults: UserDefaults
     private var changesSubscription: AnyCancellable?
     
-    init(key: StorageKey, userDefaults: UserDefaults) {
-        self.userDefaults = userDefaults
+    init(key: StorageKey, userDefaultsType: StorageType.UserDefaultsType) {
+        self.userDefaults = UserDefaultsProvider.getUserDefaults(type: userDefaultsType)
         super.init(key: key)
     }
     
@@ -25,7 +25,6 @@ class UserDefaultsKeeperManager<Value: Codable>: KeeperManager<Value> {
     override func subscribeOnChanges(changesHandler: @escaping () -> Void) {
         changesSubscription = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
             .dropFirst()
-            .print()
             .sink { [weak self] notification in
                 guard
                     let userDefaults = notification.object as? UserDefaults,

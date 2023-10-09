@@ -32,8 +32,10 @@ struct InMemoryTextFieldView: View {
             }
         }
         .navigationTitle("In-Memory")
-        // TODO: Not available in macOS
-        // .navigationBarTitleDisplayMode(.inline)
+#if os(iOS) || os(watchOS) || os(tvOS)
+        // Not available in macOS
+        .navigationBarTitleDisplayMode(.inline)
+#endif
     }
 }
 

@@ -8,12 +8,12 @@
 import SwiftKeeper
 import SwiftUI
 
-struct UserDefaultsTextFieldView: View {
-    @Storage(.persistent, key: "user-defaults", defaultValue: "")
+struct UserDefaultsStandardTextFieldView: View {
+    @Storage(.userDefaults, key: "user-defaults", defaultValue: "")
     var firstUserDefaults: String
-    @Storage(.persistent, key: "user-defaults", defaultValue: "")
+    @Storage(.userDefaults, key: "user-defaults", defaultValue: "")
     var secondUserDefaults: String
-    @Storage(.persistent, key: "user-defaults-two", defaultValue: "")
+    @Storage(.userDefaults, key: "user-defaults-two", defaultValue: "")
     var thirdUserDefaults: String
     
     var body: some View {
@@ -32,11 +32,13 @@ struct UserDefaultsTextFieldView: View {
             }
         }
         .navigationTitle("UserDefaults")
-        // TODO: Not available in macOS
-        // .navigationBarTitleDisplayMode(.inline)
+#if os(iOS) || os(watchOS) || os(tvOS)
+        // Not available in macOS
+        .navigationBarTitleDisplayMode(.inline)
+#endif
     }
 }
 
 #Preview {
-    UserDefaultsTextFieldView()
+    UserDefaultsStandardTextFieldView()
 }

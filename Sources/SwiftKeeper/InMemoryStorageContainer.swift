@@ -1,6 +1,6 @@
 import Foundation
 
-class InMemoryStorageContainer {
+final class InMemoryStorageContainer {
     static let shared = InMemoryStorageContainer()
     var storage: [StorageKey: Data] = [:]
     
