@@ -25,7 +25,6 @@ final class InMemoryKeeperManager<Value: Codable>: KeeperManager<Value> {
     
     override func subscribeOnChanges(changesHandler: @escaping () -> Void) {
         changesSubscription = NotificationCenter.default.publisher(for: .inMemoryStorageDidChange)
-            .print()
             .sink { [weak self] notification in
                 let notificationKey = NotificationKey.inMemoryStorageKeyNotificationKey
                 guard
@@ -39,12 +38,4 @@ final class InMemoryKeeperManager<Value: Codable>: KeeperManager<Value> {
                 changesHandler()
             }
     }
-}
-
-enum NotificationKey {
-    static let inMemoryStorageKeyNotificationKey = "swift-keeper.in-memory-keeper-manager.storage-key"
-}
-
-extension Notification.Name {
-    static let inMemoryStorageDidChange = Notification.Name("swift-keeper.in-memory-keeper-manager.storage-did-change")
 }

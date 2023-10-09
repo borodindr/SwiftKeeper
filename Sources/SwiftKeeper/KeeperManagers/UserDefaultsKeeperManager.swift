@@ -24,6 +24,7 @@ final class UserDefaultsKeeperManager<Value: Codable>: KeeperManager<Value> {
     
     override func subscribeOnChanges(changesHandler: @escaping () -> Void) {
         changesSubscription = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+            // Subscription emits value right after subscription which is not needed.
             .dropFirst()
             .sink { [weak self] notification in
                 guard
