@@ -15,6 +15,9 @@ struct ContentView: View {
                 NavigationLink("In-Memory") {
                     InMemoryOptionsView()
                 }
+                NavigationLink("UserDefaults") {
+                    UserDefaultsOptionsView()
+                }
             }
             .navigationTitle("SwiftKeeperExample")
         }
